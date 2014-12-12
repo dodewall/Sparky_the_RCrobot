@@ -33,8 +33,39 @@
 #define 	Tank_Mode	100
 
 
+
 void debug_rf(void);
 
+
+//////////////////////////////////////////////////
+//
+//	Global stuff
+//
+////////////////////////////////////////////////////
+
+bool RF_debug = false ;
+
+float motor_smooth = .25;
+int lastRight=0;
+int lastLeft =0;
+
+int left = 0 ;
+int right = 0 ;
+
+
+volatile char 	new_packet	 			= 	0;
+char 			receive_buffer[p_length]=	{0};
+char 			send_buffer[p_length]	=	{0};
+/* receive_buffer[0] = leftB	 receive_buffer[1] = rightB
+   receive_buffer[2&3] = VLadc	 receive_buffer[4&5] = VRadc
+   receive_buffer[6&7] = HLadc	 receive_buffer[8&9] = HRadc
+   receive_buffer[11]   	= playMode ( mk = 64 , sj = 1 , dj = 11 , key = 3 )
+
+	if 	( L_bump && R_bump ) 	{ Mario 	= true;}
+	else if (!L_bump && R_bump ) 	{ tank_mode 	= true;}
+	else if ( L_bump && !R_bump ) 	{ double_joy 	= true;}
+	else if ( !L_bump && !R_bump ) 	{ single_joy 	= true;}
+*/
 
 ////////////////////////////////////////////////////
 //
@@ -243,35 +274,7 @@ void Mario_Drive(){
 
 
 
-////////////////////////////////////////////////////
-//
-//	Global stuff
-//
-////////////////////////////////////////////////////
 
-bool RF_debug = false ;
-
-float motor_smooth = .25;
-int lastRight=0;
-int lastLeft =0;
-
-int left = 0 ;
-int right = 0 ;
-
-
-volatile char 	new_packet	 			= 	0;
-char 			receive_buffer[p_length]=	{0};
-char 			send_buffer[p_length]	=	{0};
-/* receive_buffer[0] = leftB	 receive_buffer[1] = rightB
-   receive_buffer[2&3] = VLadc	 receive_buffer[4&5] = VRadc
-   receive_buffer[6&7] = HLadc	 receive_buffer[8&9] = HRadc
-   receive_buffer[11]   	= playMode ( mk = 64 , sj = 1 , dj = 11 , key = 3 )
-
-	if 	( L_bump && R_bump ) 	{ Mario 	= true;}
-	else if (!L_bump && R_bump ) 	{ tank_mode 	= true;}
-	else if ( L_bump && !R_bump ) 	{ double_joy 	= true;}
-	else if ( !L_bump && !R_bump ) 	{ single_joy 	= true;}
-*/
 
 int main(void) {
 	m_clockdivide(0);

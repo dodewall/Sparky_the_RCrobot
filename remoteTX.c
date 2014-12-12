@@ -14,6 +14,27 @@
 #include "m_wireless.h"
 
 
+
+//////////////////////////////////////////////////
+//
+// 	Global Stuff
+//
+//////////////////////////////////////////////////
+char 	new	 		=	0;
+char 	receive_buffer[p_length]=	{0}	;
+char 	send_buffer[p_length]	=	{0} 	;   // [ leftB, rightB, VLadc, = , VRadc, = , HLadc, =,  HRadc, =, _  ]
+
+						/* send_buffer[0]  	= leftB
+						   send_buffer[1]  	= rightB
+						   send_buffer[2 & 3] 	= VLadc
+						   send_buffer[4 & 5] 	= VRadc
+						   send_buffer[6 & 7] 	= HLadc
+						   send_buffer[8 & 9] 	= HRadc
+						   send_buffer[11]  	= playMode ( mk = 64 , sj = 1 , dj = 11 , tank  = 100 )
+						 */
+
+
+
 ////////////////////////////////////////////////////
 //
 //	SETUP methods
@@ -182,26 +203,6 @@ void DEBUG_vals_usb(void );
 void debug_ADC_vals(int  Calibration,  long VRightSum,long VLeftSum, long HLeftSum, long HRightSum );
 void debug_ADC_sums(int timer_3_cnt, long VRightSum, long VLeftSum, long HLeftSum, long HRightSum );
 bool debug_ADC = false ;
-
-
-//////////////////////////////////////////////////
-//
-// 	Global Stuff
-//
-//////////////////////////////////////////////////
-char 	new	 		=	0;
-char 	receive_buffer[p_length]=	{0}	;
-char 	send_buffer[p_length]	=	{0} 	;   // [ leftB, rightB, VLadc, = , VRadc, = , HLadc, =,  HRadc, =, _  ]
-
-						/* send_buffer[0]  	= leftB
-						   send_buffer[1]  	= rightB
-						   send_buffer[2 & 3] 	= VLadc
-						   send_buffer[4 & 5] 	= VRadc
-						   send_buffer[6 & 7] 	= HLadc
-						   send_buffer[8 & 9] 	= HRadc
-						   send_buffer[11]  	= playMode ( mk = 64 , sj = 1 , dj = 11 , tank  = 100 )
-						 */
-
 
 
 ////////////////////////////////////////////////////

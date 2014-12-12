@@ -1,1 +1,3 @@
-m_bus.o m_imu.o m_port.o m_rf.o m_usb.o m_wii.o m_wireless.o main.o
+*.o
+*.hex
+*.elf
